@@ -1,0 +1,38 @@
+cmake_minimum_required(VERSION 3.0.0)
+project(imgui-mac VERSION 0.1.0)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# 包含头文件目录
+include_directories(
+    ${PROJECT_SOURCE_DIR}/glad/include
+    ${PROJECT_SOURCE_DIR}/imgui
+    ${PROJECT_SOURCE_DIR}/imgui/backends  # 添加 backends 目录
+    /usr/local/Cellar/glfw/3.4/include    # GLFW 头文件目录
+)
+
+# 查找源文件
+file(GLOB_RECURSE IMGUI_SRC 
+    ${PROJECT_SOURCE_DIR}/imgui/imgui*.cpp
+    ${PROJECT_SOURCE_DIR}/imgui/backends/imgui_impl_glfw.cpp
+    ${PROJECT_SOURCE_DIR}/imgui/backends/imgui_impl_opengl3.cpp
+)
+file(GLOB_RECURSE GLAD_SRC ${PROJECT_SOURCE_DIR}/glad/src/*.c)
+file(GLOB_RECURSE MAIN_SRC ${PROJECT_SOURCE_DIR}/main.cpp)
+
+set(SRC_LIST
+    ${MAIN_SRC}
+    ${GLAD_SRC}
+    ${IMGUI_SRC}
+)
+
+# 创建可执行文件
+add_executable(imgui-mac ${SRC_LIST})
+
+# 链接库目录
+link_directories(/usr/local/Cellar/glfw/3.4/lib)
+
+# 链接 GLFW 和 OpenGL 框架
+target_link_libraries(imgui-mac /usr/local/Cellar/glfw/3.4/lib/libglfw.dylib)  # 仅指定库名称
+target_link_libraries(imgui-mac "-framework OpenGL")

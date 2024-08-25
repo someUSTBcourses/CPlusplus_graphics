@@ -1,0 +1,31 @@
+# 设置CMake的最低版本要求
+cmake_minimum_required(VERSION 3.10)
+
+# 定义项目名称
+project(ImGuiExample)
+
+# 设置C++标准为C++11
+set(CMAKE_CXX_STANDARD 11)
+
+# 包含头文件目录
+include_directories(
+    lib/glfw/include
+    lib/imgui
+    lib/imgui/backends
+)
+
+# 指定链接库的路径
+link_directories(
+    lib/glfw/lib-mingw-w64
+)
+
+# 递归查找ImGui库中的所有源文件
+file(GLOB_RECURSE IMGUI_SRCS
+    lib/imgui/*.cpp
+)
+
+# 定义可执行文件及其源文件
+add_executable(ImGuiExample WIN32 src/main.cpp ${IMGUI_SRCS})
+
+# 链接需要的库
+target_link_libraries(ImGuiExample glfw3 opengl32)
