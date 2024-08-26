@@ -6,7 +6,7 @@
 参考库：
 1. https://github.com/ocornut/imgui 
 2. https://en.cppreference.com/w/cpp/links/libs  找sfml，放弃了基于C语言完成的SDL库（https://github.com/libsdl-org/SDL）。
-3. https://www.sfml-dev.org/ ，代码：https://github.com/SFML/SFML/tree/master
+3. https://www.sfml-dev.org/ ，代码：https://github.com/SFML/SFML/tree/master，sfmlxImgui：https://github.com/diwacreation3/SFMLxImGui
 4. glfw:https://github.com/glfw/glfw,文档：https://www.glfw.org/docs/latest/quick.html
 5. CMakeLists.txt 语法
 https://blog.csdn.net/afei__/article/details/81201039   上文讲的很详细，可认真学习下。https://www.bilibili.com/video/BV1fy4y1b7TC
@@ -38,11 +38,13 @@ imgui/
 ```sh
 cmake -S . -B ./build -G "MinGW Makefiles"
 
+
 说明：This command configures the build system using CMake, specifying the source directory (-S .), the build directory (-B ./build), and the generator (-G "MinGW Makefiles").
 
 2. compiling and linking  the project:
 
 cmake --build ./build
+```
 
 参考资料：
 https://blog.csdn.net/sq8706/article/details/139100617?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EYuanLiJiHua%7ECtr-1-139100617-blog-136861672.235%5Ev43%5Epc_blog_bottom_relevance_base1&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EYuanLiJiHua%7ECtr-1-139100617-blog-136861672.235%5Ev43%5Epc_blog_bottom_relevance_base1&utm_relevant_index=2
